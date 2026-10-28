@@ -1,0 +1,29 @@
+require "json"
+
+class LanguagePack::Helpers::Nodebin
+  NODE_VERSION = "24.22.1"
+  YARN_VERSION = "1.22.22"
+
+  def self.hardcoded_node_lts(arch:)
+    arch = "x64" if arch == "amd64"
+    {
+      "number" => NODE_VERSION,
+      "url" => "https://nodejs.org/dist/v#{NODE_VERSION}/node-v#{NODE_VERSION}-linux-#{arch}.tar.gz"
+    }
+  end
+
+  def self.hardcoded_yarn
+    {
+      "number" => YARN_VERSION,
+      "url" => "https://registry.npmjs.org/yarn/-/yarn-#{YARN_VERSION}.tgz"
+    }
+  end
+
+  def self.node_lts(arch:)
+    hardcoded_node_lts(arch: arch)
+  end
+
+  def self.yarn
+    hardcoded_yarn
+  end
+end
